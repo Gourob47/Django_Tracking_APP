@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+    <style>
+           .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      padding-left: 20px;
+    }
+    
+    .card h3 {
+      margin-top: 0;
+    }
+    
+    .card p {
+      margin-bottom: 0;
+    }
+       
+    .container {
+      
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      a{
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+      align-items: center;
+    }
+
+    .container3 {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        
+        }
+        .ok3{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+       
+            padding: 20px;
+             
+        }
+        .container2{
+          margin:  0 auto;
+        }
+    </style>
+</head>
+<body>
+  
+  <div class="container3">
+    <div class="ok3"> 
+       <div class="container2">
+         <h1>Company: {{request.user}}</h1>     
+       </div>
+       <div class="container2">
+         <a href="{% url 'home' %}">Home</a>
+       </div>
+      <div class="container2">
+       <a href="/logout">Logout</a>
+      </div>
+     
+   </div>
+  </div>
+    <div class="container">
+   
+    <h1>Uses History of : {{id}} </h1>
+    {% for user in monitor%}
+
+    <div class="card">
+      Accessories : <a href={% url 'accessories' user.accessories_id %}>{{user.accessories_id}}</a>
+      <p>checkoutTime: {{user.checkout_Time}}</p>
+      <p>returnTime: {{user.return_Time}}</p>
+    </div>
+
+    {%endfor%}
+    </div>
+</body>
+</html>

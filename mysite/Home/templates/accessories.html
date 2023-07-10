@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        
+        .container {
+          max-width: 400px;
+          margin: 0 auto;
+          padding: 30px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        .container3 {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        
+        .container h2 {
+          text-align: center;
+        }
+        
+        .container input[type="text"],
+        .container input[type="password"],
+        .container input[type="email"] {
+          width: 90%;
+          padding: 12px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+        }
+  
+        button{
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 100%;
+        align-items: center;
+      }
+        
+        .container input[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          width: 100%;
+        }
+        
+        .container input[type="submit"]:hover {
+          background-color: #45a049;
+        }
+        .ok{
+            display: flex;
+           justify-content: center;
+            align-items: center;
+          
+            
+    
+        }
+        .ok1{
+            padding: 20px;
+        }
+        .ok3{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+       
+            padding: 20px;
+             
+        }
+      .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      padding-left: 20px;
+    }
+    
+    .card h3 {
+      margin-top: 0;
+    }
+    
+    .card p {
+      margin-bottom: 0;
+    }
+
+    .container2{
+      margin: 0 auto;
+    }
+    a{
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+      align-items: center;
+    }
+  
+
+      </style>
+</head>
+<body>
+
+  <div class="container3">
+    <div class="ok3"> 
+       <div class="container2">
+         <h1>Company: {{request.user}}</h1>     
+       </div>
+       <div class="container2">
+         <a href="{% url 'home' %}">Home</a>
+       </div>
+      <div class="container2">
+       <a href="/logout">Logout</a>
+      </div>
+     
+   </div>
+  </div>
+
+    <div class="ok">
+      
+        <div class="ok1">
+
+            <form method="POST" action="">
+                {% csrf_token %}
+           
+                <div class="container">
+                  <h1>Checkout & Return Time</h1>
+                    <label for="name">Check Time:</label>
+                    <input type="datetime-local" name="checkout" required>
+                    <br>
+            
+                    <label for="name">Return Time: </label>
+                    <input type="datetime-local" name="return" required>
+                </div>
+                <br>  
+                 <div class="container">
+                  <h1>List of Employee</h1>
+                     {% for item in employee %}
+                    <label>
+                      <input type="radio" name="name" value="{{ item }}">
+                      {{ item }}
+                    </label>
+                    <br>
+                  {% endfor %}
+                  <button type="submit">Submit</button>
+                 </div>
+              </form>
+        </div>
+
+        <div>
+
+          <h1>Monitoring By : {{id}} </h1>
+
+           {% for user in monitor%}
+
+          <div class="card">
+            Employee : <a href={% url 'employ' user.employee_name %}> {{user.employee_name}}</a>
+            <p>checkoutTime: {{user.checkout_Time}}</p>
+            <p>returnTime: {{user.return_Time}}</p>
+          </div>
+
+          {%endfor%} 
+        </div>
+    </div>
+</body>
+</html>

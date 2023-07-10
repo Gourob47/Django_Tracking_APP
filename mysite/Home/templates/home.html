@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Registration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container2{
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      .container h2 {
+        text-align: center;
+      }
+      
+      .container input[type="text"],
+      .container input[type="password"],
+      .container input[type="email"] {
+        width: 90%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      a{
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+      align-items: center;
+    }
+
+      
+      .container input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      .container input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+    }
+    
+    .card h3 {
+      margin-top: 0;
+    }
+    
+    .card p {
+      margin-bottom: 0;
+    }
+
+    .container1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+    }
+
+    .container3 {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        
+        }
+    .ok3{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+       
+            padding: 20px;
+             
+        }
+    .container2{
+          margin:  0 auto;
+        }
+    button{
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+      align-items: center;
+    }
+
+
+  
+</style>
+  </head>
+  <body>
+    <div class="container3">
+      <div class="ok3"> 
+         <div class="container2">
+           <h1>Company: {{request.user}}</h1>     
+         </div>
+         <div class="container2">
+          <a href="/logout">Logout</a>
+         </div>
+             
+     </div>
+    </div>
+
+   <div class="container1">
+    <div class="container">
+
+        <h2>Create Employee</h2>
+        <form method="POST" onsubmit="">
+          {% csrf_token %}
+          <label for="name">Empolyee Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+          <input type="submit" value="Create">
+        </form>
+    </div>
+
+    <div class="container2">
+      <h2>Acessories</h2>
+      <a href="{% url 'accessories' id='Laptop' %}">Laptop</a>
+      <a href="{% url 'accessories' id='Mobile' %}">Mobile</a>
+      <a href="{% url 'accessories' id='Desktop' %}">Desktop</a>
+      <a href="{% url 'accessories' id='Tablet' %}">Tablet</a>
+      <a href="{% url 'accessories' id='Charger' %}">Charger</a>
+     </div>
+
+   </div>
+
+    <div class="container">
+      <h1>List of  Employee</h1>
+
+      {% for name in employee%}
+      <div class="card">
+          <a href={% url 'employ' name %}>{{name}}</a>
+          <p>This is a sample card.</p>
+        </div>
+      {%endfor%}
+    </div>
+  </body>
+
+ 
+  
+</html>
